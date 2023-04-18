@@ -27,6 +27,10 @@ export const theme = extendTheme({
       body: {
         bg: 'light.white',
         color: 'dark.text'
+      },
+      span: {
+        bg: 'highlight',
+        color: 'highlight',
       }
     }
   }

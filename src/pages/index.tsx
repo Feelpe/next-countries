@@ -1,12 +1,14 @@
 import { Divider, HStack, Image, Text, VStack } from "@chakra-ui/react";
+
 import { Header } from "../components/Header";
+import { Slider } from "../components/Slider";
 import { Travels } from "../components/Travels";
 
 export default function Home() {
   return (
     <VStack>
       <Header />
-      <Image src="/Banner.svg" w="100%" />
+      <Image src="/Banner.svg" w="100%" alt="banner" />
       <HStack
         w="100%"
         maxW={1480}
@@ -29,6 +31,7 @@ export default function Home() {
           <Text>Vamos nessa?</Text>
           <Text>Então escolha seu continente</Text>
         </VStack>
+        <Slider />
       </VStack>
     </VStack>
   );
