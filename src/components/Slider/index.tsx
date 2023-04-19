@@ -2,23 +2,15 @@ import { Flex } from "@chakra-ui/react";
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import { Slide } from "./Slide";
+
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Slide } from "./Slide";
 
 export function Slider() {
   return (
-    <Flex
-      h="450px"
-      w={"100%"}
-      maxW={1480}
-      mx={"auto"}
-      px={24}
-      pb={10}
-      align={"center"}
-      justify={"center"}
-    >
+    <Flex w={"100%"}>
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y]}
         spaceBetween={0}

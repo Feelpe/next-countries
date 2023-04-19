@@ -11,11 +11,9 @@ export default function Home() {
       <Image src="/Banner.svg" w="100%" alt="banner" />
       <HStack
         w="100%"
-        maxW={1480}
         mx="auto"
         align="center"
-        justifyContent="center"
-        gap={32}
+        justifyContent="space-between"
         paddingY={20}
         paddingX={36}
       >
@@ -25,8 +23,13 @@ export default function Home() {
         <Travels img="/icons/museum.png" text="clássico" />
         <Travels img="/icons/earth.png" text="e mais..." />
       </HStack>
-      <Divider w={20} />
-      <VStack w="100%" maxW={1480} mx="auto" mb={10}>
+      <Divider
+        w={20}
+        borderColor={"dark.text"}
+        borderWidth={2}
+        opacity={"none"}
+      />
+      <VStack w="100%" mx="auto" px={24} pb={10}>
         <VStack paddingY={12} fontWeight={500} fontSize={36}>
           <Text>Vamos nessa?</Text>
           <Text>Então escolha seu continente</Text>
