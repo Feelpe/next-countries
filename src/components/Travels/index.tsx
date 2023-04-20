@@ -1,17 +1,21 @@
-import { Image, Text, VStack } from "@chakra-ui/react";
+import { HStack } from "@chakra-ui/react";
+import { TravelTypes } from "./TravelsTypes";
 
-interface TravelsProps {
-  img: string;
-  text: string;
-}
-
-export function Travels({ img, text }: TravelsProps) {
+export function Travels() {
   return (
-    <VStack gap={6}>
-      <Image src={img} h={20} />
-      <Text fontWeight={700} fontSize={24}>
-        {text}
-      </Text>
-    </VStack>
+    <HStack
+      w="100%"
+      mx="auto"
+      align="center"
+      justifyContent="space-between"
+      paddingY={20}
+      paddingX={36}
+    >
+      <TravelTypes img="/icons/cocktail.png" text="vida noturna" />
+      <TravelTypes img="/icons/surf.png" text="praia" />
+      <TravelTypes img="/icons/building.png" text="moderno" />
+      <TravelTypes img="/icons/museum.png" text="clássico" />
+      <TravelTypes img="/icons/earth.png" text="e mais..." />
+    </HStack>
   );
 }
