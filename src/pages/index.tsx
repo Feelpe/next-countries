@@ -3,6 +3,58 @@ import { Divider, Image, Text, VStack } from "@chakra-ui/react";
 import { Slider } from "../components/Slider";
 import { Travels } from "../components/Travels";
 
+export interface CountryType {
+  slug: string;
+  banner: string;
+  name: string;
+  continentName: string;
+  flag: string;
+}
+
+export interface ContinentType {
+  slug: string;
+  title: string;
+  subtitle: string;
+  slideImg: string;
+  banner: string;
+  countries: CountryType[];
+}
+
+export const continents: ContinentType[] = [
+  {
+    slug: "europa",
+    title: "Europa",
+    subtitle: "O continente mais antigo.",
+    slideImg: "/continents/europa/slideImg.png",
+    banner: "/continents/europa/banner.png",
+    countries: [
+      {
+        slug: "londres",
+        banner: "/continents/europa/londres/cardLondres.png",
+        name: "Londres",
+        continentName: "Reino Unido",
+        flag: "/continents/europa/londres/EllipseLondres.png",
+      },
+    ],
+  },
+  {
+    slug: "europa",
+    title: "Europa",
+    subtitle: "O continente mais antigo.",
+    slideImg: "/continents/europa/slideImg.png",
+    banner: "/continents/europa/banner.png",
+    countries: [
+      {
+        slug: "londres",
+        banner: "/continents/europa/londres/cardLondres.png",
+        name: "Londres",
+        continentName: "Reino Unido",
+        flag: "/continents/europa/londres/EllipseLondres.png",
+      },
+    ],
+  },
+];
+
 export default function Home() {
   return (
     <VStack>

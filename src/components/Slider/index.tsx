@@ -1,8 +1,11 @@
 import { Flex } from "@chakra-ui/react";
+import Link from "next/link";
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { Slide } from "./Slide";
+
+import { continents } from "@/src/pages";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -17,8 +20,6 @@ export function Slider() {
         slidesPerView={1}
         navigation
         pagination={{ clickable: true }}
-        onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log("slide change")}
         style={{
           //@ts-ignore
           "--swiper-pagination-color": "#FFBA08",
@@ -29,54 +30,13 @@ export function Slider() {
           "--swiper-navigation-color": "#FFBA08",
         }}
       >
-        <SwiperSlide>
-          <Slide
-            src="/continents/europa/europa.png"
-            alt="europa"
-            heading="Europa"
-            text="O continente mais antigo."
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Slide
-            src="/continents/africa/africabanner.avif"
-            alt="africa"
-            heading="Africa"
-            text="Cultura vibrante, rica natureza."
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Slide
-            src="/continents/americaNorte/americaNortebanner.avif"
-            alt="america do norte"
-            heading="America do Norte"
-            text="Grande diversidade, vasta beleza."
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Slide
-            src="/continents/americaSul/americaSulbanner.avif"
-            alt="america do sul"
-            heading="America do Sul"
-            text="Cores, ritmos, paisagens deslumbrantes."
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Slide
-            src="/continents/asia/asiabanner.avif"
-            alt="asia"
-            heading="Ásia"
-            text="Tradição, modernidade, maravilhas históricas."
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Slide
-            src="/continents/oceania/oceaniabanner.avif"
-            alt="oceania"
-            heading="Oceania"
-            text="Ilhas paradisíacas, biodiversidade única."
-          />
-        </SwiperSlide>
+        {continents.map((continent) => (
+          <Link href={`/${continent.slug}`} key={continent.slug}>
+            <SwiperSlide>
+              <Slide continent={continent} />
+            </SwiperSlide>
+          </Link>
+        ))}
       </Swiper>
     </Flex>
   );

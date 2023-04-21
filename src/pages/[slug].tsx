@@ -9,11 +9,14 @@ import {
   Tooltip,
   VStack,
   Wrap,
+  WrapItem,
 } from "@chakra-ui/react";
 
 import { ContinentCard } from "../components/ContinentCard";
 
-export default function Continent() {
+import { ContinentType } from ".";
+
+export default function Continent(continent: ContinentType) {
   return (
     <>
       <Flex w={"100%"} position={"relative"}>
@@ -70,11 +73,11 @@ export default function Continent() {
           Cidades +100
         </Text>
         <Wrap spacing={10}>
-          <ContinentCard />
-          <ContinentCard />
-          <ContinentCard />
-          <ContinentCard />
-          <ContinentCard />
+          {continent.countries.map((country) => (
+            <WrapItem key={country.slug}>
+              <ContinentCard country={country} />
+            </WrapItem>
+          ))}
         </Wrap>
       </VStack>
     </>
