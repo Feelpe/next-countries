@@ -1,17 +1,16 @@
 import { Flex } from "@chakra-ui/react";
-import Link from "next/link";
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { Slide } from "./Slide";
-
-import { continents } from "@/src/pages";
+import { Slide } from "../Slide";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-export function Slider() {
+import { HomeProps } from "@/src/pages";
+
+export function Slider({ continents }: HomeProps) {
   return (
     <Flex w={"100%"}>
       <Swiper
@@ -31,11 +30,11 @@ export function Slider() {
         }}
       >
         {continents.map((continent) => (
-          <Link href={`/${continent.slug}`} key={continent.slug}>
+          <div key={continent.slug}>
             <SwiperSlide>
               <Slide continent={continent} />
             </SwiperSlide>
-          </Link>
+          </div>
         ))}
       </Swiper>
     </Flex>

@@ -1,15 +1,15 @@
 import { Card, CardBody, Heading, Image, Text } from "@chakra-ui/react";
 
-import { CountryType } from "@/src/pages";
+import { CitiesType } from "@/src/pages";
 
 interface ContinentCardProps {
-  country: CountryType;
+  city: CitiesType;
 }
 
-export function ContinentCard({ country }: ContinentCardProps) {
+export function ContinentCard({ city }: ContinentCardProps) {
   return (
     <Card w={64} overflow={"hidden"} rounded={"base"}>
-      <Image src={country.banner} alt={country.name} h={"173px"} />
+      <Image src={city.banner} alt={city.city} h={"173px"} />
       <CardBody
         position={"relative"}
         border={"1px"}
@@ -20,7 +20,7 @@ export function ContinentCard({ country }: ContinentCardProps) {
         pb={6}
       >
         <Heading fontSize={20} fontFamily={"Barlow"} pb={3}>
-          {country.name}
+          {city.city}
         </Heading>
         <Text
           fontWeight={500}
@@ -28,10 +28,10 @@ export function ContinentCard({ country }: ContinentCardProps) {
           fontFamily={"Barlow"}
           color={"dark.info"}
         >
-          {country.continentName}
+          {city.country}
         </Text>
         <Image
-          src="/continents/europa/EllipseLondres.png"
+          src={city.flag}
           alt="Bandeira Reino Unido"
           position={"absolute"}
           right={6}

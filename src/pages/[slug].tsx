@@ -11,20 +11,20 @@ import {
   Wrap,
   WrapItem,
 } from "@chakra-ui/react";
+import { GetStaticPropsContext } from "next";
 
-import { ContinentCard } from "../components/ContinentCard";
+import { createClient } from "../service/prismicio";
 
 import { ContinentType } from ".";
+import { ContinentCard } from "../components/ContinentCard";
 
-export default function Continent(continent: ContinentType) {
+type PageParams = { slug: string };
+
+export default function Continent({ continent }: ContinentType) {
   return (
     <>
       <Flex w={"100%"} position={"relative"}>
-        <Image
-          src="/continents/europa/ContinentBanner.png"
-          alt="ContinentBanner"
-          w={"100%"}
-        />
+        <Image src={continent.banner} alt={continent.title} w={"100%"} />
         <Heading
           fontSize={48}
           color={"light.text"}
@@ -32,33 +32,28 @@ export default function Continent(continent: ContinentType) {
           left={36}
           bottom={14}
         >
-          Europa
+          {continent.title}
         </Heading>
       </Flex>
       <VStack w={"100%"} px={36} py={20} alignItems={"flex-start"}>
         <HStack gap={16} pb={20}>
-          <Text fontSize={24}>
-            A Europa é, por convenção, um dos seis continentes do mundo.
-            Compreendendo a península ocidental da Eurásia, a Europa geralmente
-            divide-se da Ásia a leste pela divisória de águas dos montes Urais,
-            o rio Ural, o mar Cáspio, o Cáucaso, e o mar Negro a sudeste
-          </Text>
+          <Text fontSize={24}>{continent.description}</Text>
           <HStack gap={10}>
             <VStack>
               <Heading color={"highlight"} fontSize={48}>
-                50
+                {continent.countries}
               </Heading>
               <Heading fontSize={24}>Países</Heading>
             </VStack>
             <VStack>
               <Heading color={"highlight"} fontSize={48}>
-                60
+                {continent.languages}
               </Heading>
               <Heading fontSize={24}>Línguas</Heading>
             </VStack>
             <VStack>
               <Heading color={"highlight"} fontSize={48}>
-                27
+                {continent.cities100}
               </Heading>
               <Center gap={2}>
                 <Heading fontSize={24}>Cidades+100</Heading>
@@ -73,9 +68,9 @@ export default function Continent(continent: ContinentType) {
           Cidades +100
         </Text>
         <Wrap spacing={10}>
-          {continent.countries.map((country) => (
-            <WrapItem key={country.slug}>
-              <ContinentCard country={country} />
+          {continent.cities.map((city) => (
+            <WrapItem key={city.city}>
+              <ContinentCard city={city} />
             </WrapItem>
           ))}
         </Wrap>
@@ -83,3 +78,51 @@ export default function Continent(continent: ContinentType) {
     </>
   );
 }
+
+export const getStaticPaths = () => {
+  return {
+    paths: [],
+    fallback: "blocking",
+  };
+};
+
+export const getStaticProps = async ({
+  params,
+  previewData,
+}: GetStaticPropsContext<PageParams>) => {
+  const client = createClient({ previewData });
+
+  if (!params) {
+    return { notFound: true };
+  }
+
+  const response = await client.getByUID("continent", String(params.slug));
+
+  // console.log(JSON.stringify(response, null, 2));
+
+  const cities = response.data.cities.map((city) => {
+    return {
+      banner: city.banner.url,
+      city: city.city,
+      country: city.country,
+      flag: city.flag.url,
+    };
+  });
+
+  const continent = {
+    slug: response.slugs[0],
+    title: response.data.title,
+    subtitle: response.data.subtitle,
+    description: response.data.description,
+    countries: response.data.countries,
+    languages: response.data.languages,
+    cities100: response.data.cities100,
+    slide: response.data.slide.url,
+    banner: response.data.banner.url,
+    cities: cities,
+  };
+
+  return {
+    props: { continent },
+  };
+};

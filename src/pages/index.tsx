@@ -1,61 +1,45 @@
 import { Divider, Image, Text, VStack } from "@chakra-ui/react";
+import { GetStaticProps } from "next";
 
 import { Slider } from "../components/Slider";
 import { Travels } from "../components/Travels";
 
-export interface CountryType {
-  slug: string;
+import { createClient } from "../service/prismicio";
+
+export interface CitiesType {
   banner: string;
-  name: string;
-  continentName: string;
+  city: string;
+  country: string;
   flag: string;
 }
 
 export interface ContinentType {
+  continent: {
+    slug: string;
+    title: string;
+    subtitle: string;
+    description: string;
+    countries: number;
+    languages: number;
+    cities100: number;
+    slide: string;
+    banner: string;
+    cities: CitiesType[];
+  };
+}
+
+export interface Continent {
   slug: string;
   title: string;
   subtitle: string;
-  slideImg: string;
-  banner: string;
-  countries: CountryType[];
+  slide: string;
 }
 
-export const continents: ContinentType[] = [
-  {
-    slug: "europa",
-    title: "Europa",
-    subtitle: "O continente mais antigo.",
-    slideImg: "/continents/europa/slideImg.png",
-    banner: "/continents/europa/banner.png",
-    countries: [
-      {
-        slug: "londres",
-        banner: "/continents/europa/londres/cardLondres.png",
-        name: "Londres",
-        continentName: "Reino Unido",
-        flag: "/continents/europa/londres/EllipseLondres.png",
-      },
-    ],
-  },
-  {
-    slug: "europa",
-    title: "Europa",
-    subtitle: "O continente mais antigo.",
-    slideImg: "/continents/europa/slideImg.png",
-    banner: "/continents/europa/banner.png",
-    countries: [
-      {
-        slug: "londres",
-        banner: "/continents/europa/londres/cardLondres.png",
-        name: "Londres",
-        continentName: "Reino Unido",
-        flag: "/continents/europa/londres/EllipseLondres.png",
-      },
-    ],
-  },
-];
+export interface HomeProps {
+  continents: Continent[];
+}
 
-export default function Home() {
+export default function Home({ continents }: HomeProps) {
   return (
     <VStack>
       <Image src="/Banner.svg" w="100%" alt="banner" />
@@ -71,8 +55,29 @@ export default function Home() {
           <Text>Vamos nessa?</Text>
           <Text>Então escolha seu continente</Text>
         </VStack>
-        <Slider />
+        <Slider continents={continents} />
       </VStack>
     </VStack>
   );
 }
+
+export const getStaticProps: GetStaticProps = async ({ previewData }) => {
+  const client = createClient({ previewData });
+
+  const response = await client.getAllByType("continent");
+
+  const continents = response.map((continent) => {
+    return {
+      slug: continent.slugs[0],
+      title: continent.data.title,
+      subtitle: continent.data.subtitle,
+      slide: continent.data.slide.url,
+    };
+  });
+
+  return {
+    props: {
+      continents,
+    },
+  };
+};
