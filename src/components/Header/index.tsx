@@ -28,7 +28,9 @@ export function Header() {
           />
         </Link>
       )}
-      <Image src="/Logo.svg" alt="logo" />
+      <Link href={"/"}>
+        <Image src="/Logo.svg" alt="logo" />
+      </Link>
     </Flex>
   );
 }
