@@ -1,9 +1,13 @@
 # Next Countries - A Travel Destinations Website
 
-![Next Countries A Travel Destinations Website](https://i.imgur.com/4kA3QTZ.gif)
+![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white) ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![Chakra](https://img.shields.io/badge/chakra-%234ED1C5.svg?style=for-the-badge&logo=chakraui&logoColor=white) 
 
 ## Description
 A website showcasing travel destinations built with TypeScript, Next.js, and Prismic, and styled with Chakra UI.
+
+Home Page                             |  North America Page
+:------------------------------------:|:------------------------------------:
+![](https://i.imgur.com/tFXftBI.gif)  |  ![](https://i.imgur.com/FFBxcMr.gif)
 
 ## Getting Started
 
