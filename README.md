@@ -1,14 +1,16 @@
 # Next Countries - A Travel Destinations Website
 
+![Next Contries app](https://i.imgur.com/4kA3QTZ.gif)
+
 ## Description
-A website showcasing travel destinations built with TypeScript, Next.js, Prismic, and styled with Chakra UI.
+A website showcasing travel destinations built with TypeScript, Next.js, and Prismic, and styled with Chakra UI.
 
 ## Getting Started
 
 ### Prerequisites
 - Node.js
 - Yarn package manager
-- Prismic API credentials and the contents for display in the app.
+- Prismic API credentials.
 
 ### Installation
 
@@ -30,23 +32,29 @@ cd next-countries
 yarn install
 ```
 
-4. Create a Prismic repository and feat with images and texts
-
-- Create a new Custom Type with the following fields:
-  - Title (Text)
-  - Content (Rich Text)
-  - Image (Image)
- 
-- Before you can add all the information you want by the dashboard of prismic.
-
-5. Set up your Prismic API credentials by creating a `.env.local` file and adding the following:
+4. Create a Prismic repository and set up your Prismic API credentials by creating a `.env.local` file and adding the following:
 
 ```
-PRISMIC_API_ENDPOINT=YOUR_PRISMIC_API_ENDPOINT
 PRISMIC_ACCESS_TOKEN=YOUR_PRISMIC_ACCESS_TOKEN
 ```
 
-Replace `YOUR_PRISMIC_API_ENDPOINT` and `YOUR_PRISMIC_ACCESS_TOKEN` with your Prismic API details.
+Replace `YOUR_PRISMIC_ACCESS_TOKEN` with your Prismic API Access Token.
+
+- And go to `sm.json` to set the endpoint of your app
+
+Replace `YOUR_PRISMIC_API_ENDPOINT` with your Prismic API ENDPOINT.
+
+5. Create a new Custom Type using `slicemachine`:
+
+```
+yarn slicemachine
+```
+
+- Follow this example (remember to login into the slicemachine).
+
+![slicemachine example](https://i.imgur.com/Mgxq8vX.gif)
+
+- Now you can go to the prismic dashboard and add all the content that you want (the continents and countries if you want to maintain the idea).
 
 6. Running the application
 
