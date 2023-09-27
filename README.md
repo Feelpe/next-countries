@@ -1,6 +1,6 @@
 # Next Countries - A Travel Destinations Website
 
-![Next Contries app](https://i.imgur.com/wnodkdB.gif)
+![Next Countries A Travel Destinations Website](https://i.imgur.com/4kA3QTZ.gif)
 
 ## Description
 A website showcasing travel destinations built with TypeScript, Next.js, and Prismic, and styled with Chakra UI.
